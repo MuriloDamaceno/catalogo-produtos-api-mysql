@@ -1,6 +1,5 @@
 require('dotenv').config();
 const express = require('express');
-const mongoSanitize = require('express-mongo-sanitize');
 const conectarDB = require('./src/config/db');
 
 const authRoutes = require('./src/routes/authRoutes');
@@ -13,7 +12,6 @@ conectarDB();
 
 // Middlewares
 app.use(express.json());
-app.use(mongoSanitize()); // Proteção contra NoSQL Injection
 
 // Rotas
 app.use('/auth', authRoutes);
