@@ -12,13 +12,16 @@ exports.registrar = async (req, res) => {
             return res.status(400).json({ mensagem: 'Email já cadastrado' });
         }
 
-        const usuario = await Usuario.create({ nome, email, senha });
+        const salt = await bcrypt.genSalt(10);
+        const senhaHash = await bcrypt.hash(senha, salt);
+
+        const usuario = await Usuario.create({ nome, email, senha: senhaHash });
 
         res.status(201).json({ mensagem: 'Usuário criado com sucesso', id: usuario._id });
     } catch (error) {
         res.status(500).json({ mensagem: 'Erro ao registrar', erro: error.message });
     }
-};
+};  
 
 // LOGIN
 exports.login = async (req, res) => {
