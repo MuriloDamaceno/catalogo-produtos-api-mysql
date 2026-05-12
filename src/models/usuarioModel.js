@@ -7,10 +7,7 @@ const usuarioSchema = new mongoose.Schema({
     senha: { type: String, required: [true, 'Senha é obrigatória'] }
 });
 
-usuarioSchema.pre('save', async function (next) {
-    if (!this.isModified('senha')) return next();
+usuarioSchema.pre('save', async function () {
+    if (!this.isModified('senha')) return;
     this.senha = await bcrypt.hash(this.senha, 10);
-    return next();
 });
-
-module.exports = mongoose.model('Usuario', usuarioSchema);
