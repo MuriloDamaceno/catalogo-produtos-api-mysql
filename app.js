@@ -39,7 +39,23 @@ const options = {
 const specs = swaggerJsdoc(options);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
-// Endpoint de exemplo
+/**
+ * @swagger
+ * /api/hello:
+ *   get:
+ *     summary: Retorna uma mensagem de boas-vindas.
+ *     responses:
+ *       200:
+ *         description: Mensagem de sucesso.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Olá, mundo!
+ */
 app.get('/api/hello', (req, res) => {
   res.json({ message: 'Olá, mundo!' });
 });
