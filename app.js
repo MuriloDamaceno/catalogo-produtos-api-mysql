@@ -15,25 +15,34 @@ conectarDB();
 // Middlewares
 app.use(express.json());
 
-// Rotas
-app.use('/auth', authRoutes);
-app.use('/produtos', produtoRoutes);
-
 const options = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'Minha API Simples',
+      title: 'Catálogo de Produtos API',
       version: '1.0.0',
-      description: 'Exemplo de API básica com Swagger',
+      description: 'API REST profissional para gerenciamento de produtos com autenticação',
+      contact: {
+        name: 'Suporte API',
+      },
     },
     servers: [
       {
         url: `http://localhost:${PORT}`,
+        description: 'Servidor Local',
       },
     ],
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        },
+      },
+    },
   },
-  apis: ['./app.js'],
+  apis: ['./app.js', './src/routes/*.js'],
 };
 
 const specs = swaggerJsdoc(options);
@@ -43,10 +52,11 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
  * @swagger
  * /api/hello:
  *   get:
- *     summary: Retorna uma mensagem de boas-vindas.
+ *     summary: Endpoint de teste
+ *     description: Retorna uma mensagem de boas-vindas para verificar se a API está funcionando
  *     responses:
  *       200:
- *         description: Mensagem de sucesso.
+ *         description: Mensagem de sucesso
  *         content:
  *           application/json:
  *             schema:
@@ -60,7 +70,12 @@ app.get('/api/hello', (req, res) => {
   res.json({ message: 'Olá, mundo!' });
 });
 
+// Rotas
+app.use('/auth', authRoutes);
+app.use('/produtos', produtoRoutes);
+
 app.listen(PORT, () => {
   console.log(`Servidor rodando em http://localhost:${PORT}`);
+  console.log(`Documentação Swagger disponível em http://localhost:${PORT}/api-docs`);
 });
 
