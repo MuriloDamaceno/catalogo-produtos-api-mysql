@@ -7,18 +7,22 @@ exports.registrar = async (req, res) => {
     try {
         const { nome, email, senha } = req.body;
 
+        if (!nome || !email || !senha) {
+            return res.status(400).json({ mensagem: 'Nome, email e senha são obrigatórios' });
+        }
+
         const usuarioExiste = await Usuario.findOne({ email });
         if (usuarioExiste) {
             return res.status(400).json({ mensagem: 'Email já cadastrado' });
         }
 
-        const salt = await bcrypt.genSalt(10);
-        const senhaHash = await bcrypt.hash(senha, salt);
-
-        const usuario = await Usuario.create({ nome, email, senha: senhaHash });
+        const usuario = await Usuario.create({ nome, email, senha });
 
         res.status(201).json({ mensagem: 'Usuário criado com sucesso', id: usuario._id });
     } catch (error) {
+        if (error.name === 'ValidationError') {
+            return res.status(400).json({ mensagem: 'Dados inválidos ao registrar', erro: error.message });
+        }
         res.status(500).json({ mensagem: 'Erro ao registrar', erro: error.message });
     }
 };  
