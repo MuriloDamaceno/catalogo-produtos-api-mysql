@@ -21,7 +21,7 @@ Funcionalidades Principais
 - [x] Filtros de busca por nome e categoria
 - [x] Documentação interativa com Swagger
 
- 📦 Pré-requisitos
+  Pré-requisitos
 
 Antes de rodar o projeto, você precisa ter instalado:
 
@@ -29,7 +29,7 @@ Antes de rodar o projeto, você precisa ter instalado:
 - [MongoDB](https://www.mongodb.com/)
 - [Git](https://git-scm.com/)
 
- ⚙️ Como Executar
+  Como Executar
 
 1. Clone o repositório:
 
@@ -69,7 +69,7 @@ node app.js
 http://localhost:3000
 ```
 
-## 📘 Documentação da API
+ Documentação da API
 
 Com o servidor em execução, acesse:
 
@@ -79,7 +79,7 @@ http://localhost:3000/api-docs
 
 Lá você encontra todas as rotas, modelos de requisição e respostas.
 
- 🔐 Autenticação
+ Autenticação
 
 Registrar usuário
 
@@ -116,7 +116,7 @@ Inclua o token no cabeçalho de autorização das rotas protegidas:
 Authorization: Bearer <TOKEN>
 ```
 
-🧾 Endpoints Principais
+ Endpoints Principais
 
 Autenticação
 
