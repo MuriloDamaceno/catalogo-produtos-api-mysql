@@ -1,18 +1,18 @@
-# 🚀 Catálogo de Produtos API
+Catálogo de Produtos API
 
 API RESTful para gerenciamento de catálogo de produtos, com autenticação JWT e documentação Swagger.
 
-## 🧩 Tecnologias Utilizadas
+Tecnologias Utilizadas
 
-- **Node.js**
-- **Express**
-- **MongoDB**
-- **Mongoose**
-- **bcryptjs**
-- **JSON Web Token (JWT)**
-- **Swagger UI**
+- Node.js
+- Express
+- MongoDB
+- Mongoose
+- bcryptjs
+- JSON Web Token (JWT)
+- Swagger UI
 
-## ✨ Funcionalidades Principais
+Funcionalidades Principais
 
 - [x] Registro de usuário com criptografia de senha
 - [x] Login com emissão de token JWT
@@ -21,7 +21,7 @@ API RESTful para gerenciamento de catálogo de produtos, com autenticação JWT 
 - [x] Filtros de busca por nome e categoria
 - [x] Documentação interativa com Swagger
 
-## 📦 Pré-requisitos
+ 📦 Pré-requisitos
 
 Antes de rodar o projeto, você precisa ter instalado:
 
@@ -29,7 +29,7 @@ Antes de rodar o projeto, você precisa ter instalado:
 - [MongoDB](https://www.mongodb.com/)
 - [Git](https://git-scm.com/)
 
-## ⚙️ Como Executar
+ ⚙️ Como Executar
 
 1. Clone o repositório:
 
@@ -79,9 +79,9 @@ http://localhost:3000/api-docs
 
 Lá você encontra todas as rotas, modelos de requisição e respostas.
 
-## 🔐 Autenticação
+ 🔐 Autenticação
 
-### Registrar usuário
+Registrar usuário
 
 `POST /auth/registrar`
 
@@ -95,7 +95,7 @@ Corpo da requisição:
 }
 ```
 
-### Login
+Login
 
 `POST /auth/login`
 
@@ -108,7 +108,7 @@ Corpo da requisição:
 }
 ```
 
-### Usar token
+Usar token
 
 Inclua o token no cabeçalho de autorização das rotas protegidas:
 
@@ -116,16 +116,16 @@ Inclua o token no cabeçalho de autorização das rotas protegidas:
 Authorization: Bearer <TOKEN>
 ```
 
-## 🧾 Endpoints Principais
+🧾 Endpoints Principais
 
-### Autenticação
+Autenticação
 
 | Método | Rota | Descrição | Requer Token |
 |--------|------|-----------|--------------|
 | POST | `/auth/registrar` | Registrar novo usuário | Não |
 | POST | `/auth/login` | Login e recebimento de token | Não |
 
-### Produtos
+Produtos
 
 | Método | Rota | Descrição | Requer Token |
 |--------|------|-----------|--------------|
@@ -137,7 +137,7 @@ Authorization: Bearer <TOKEN>
 | PUT | `/produtos/:id` | Atualizar produto | Sim |
 | DELETE | `/produtos/:id` | Excluir produto | Sim |
 
-## 📌 Exemplo de Produto
+Exemplo de Produto
 
 ```json
 {
@@ -149,7 +149,7 @@ Authorization: Bearer <TOKEN>
 }
 ```
 
-## 📁 Estrutura do Projeto
+Estrutura do Projeto
 
 ```
 catalogo-produtos-api/
@@ -164,15 +164,15 @@ catalogo-produtos-api/
 └── package.json
 ```
 
-## ✍️ Boas Práticas
+Boas Práticas
 
 - Mantenha o `README.md` atualizado sempre que adicionar novas rotas ou variáveis de ambiente.
 - Use exemplos de payload reais para facilitar o uso da API.
 - Deixe a documentação Swagger sempre disponível para testes rápidos.
 
-## 👤 Autor
+Autor
 
-- **Murilo Damaceno** - Desenvolvimento Back-end
+- Murilo Damaceno - Desenvolvimento Back-end
 
 ---
 
