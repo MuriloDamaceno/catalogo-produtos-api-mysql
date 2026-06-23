@@ -21,8 +21,8 @@ app.use('/api/categorias', categoriaRoutes);
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-    console.log(`🚀 Servidor rodando na porta ${PORT}`);
-    console.log(`📌 Status: http://localhost:${PORT}/api/status`);
-    console.log(`🔐 Login: POST http://localhost:${PORT}/auth/login`);
-    console.log(`📦 Categorias: http://localhost:${PORT}/api/categorias`);
+    console.log(`Servidor rodando na porta ${PORT}`);
+    console.log(`Status: http://localhost:${PORT}/api/status`);
+    console.log(`Login: POST http://localhost:${PORT}/auth/login`);
+    console.log(`Categorias: http://localhost:${PORT}/api/categorias`);
 });
