@@ -11,9 +11,14 @@ module.exports = (req, res, next) => {
 
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+        if (!decoded.id) {
+            return res.status(403).json({ mensagem: 'Token inválido: ID do usuário ausente' });
+        }
+
         req.usuarioId = decoded.id;
         next();
-    } catch (error) {
+    } catch (erro) {
         return res.status(401).json({ mensagem: 'Token inválido ou expirado' });
     }
 };
