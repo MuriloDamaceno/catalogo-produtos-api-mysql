@@ -6,57 +6,30 @@ const authController = require('../controllers/authController');
  * @swagger
  * /auth/registrar:
  *   post:
- *     summary: Registrar novo usuário
- *     description: Cria uma nova conta de usuário no sistema
- *     tags:
- *       - Autenticação
+ *     summary: Registra um novo usuário
+ *     tags: [Autenticação]
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
  *             type: object
- *             required:
- *             - nome
- *             - email
- *             - senha
- *           properties:
+ *             required: [nome, email, senha]
+ *             properties:
  *               nome:
  *                 type: string
- *                 example: João Silva
+ *                 example: Murilo Damaceno
  *               email:
  *                 type: string
- *                 format: email
- *                 example: usuario@email.com
+ *                 example: murilo@email.com
  *               senha:
  *                 type: string
- *                 format: password
- *                 example: senha123
+ *                 example: "123456"
  *     responses:
  *       201:
- *         description: Usuário registrado com sucesso
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 message:
- *                   type: string
- *                   example: Usuário registrado com sucesso
- *                 usuarioId:
- *                   type: string
+ *         description: Usuário criado com sucesso
  *       400:
- *         description: Email já existe ou dados inválidos
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 message:
- *                   type: string
- *                   example: Email já cadastrado
- *       500:
- *         description: Erro interno do servidor
+ *         description: E-mail já cadastrado ou dados inválidos
  */
 router.post('/registrar', authController.registrar);
 
@@ -64,56 +37,27 @@ router.post('/registrar', authController.registrar);
  * @swagger
  * /auth/login:
  *   post:
- *     summary: Fazer login
- *     description: Autentica um usuário e retorna um token JWT
- *     tags:
- *       - Autenticação
+ *     summary: Realiza login e retorna o token JWT
+ *     tags: [Autenticação]
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
  *             type: object
- *             required:
- *               - email
- *               - senha
+ *             required: [email, senha]
  *             properties:
  *               email:
  *                 type: string
- *                 format: email
- *                 example: usuario@email.com
+ *                 example: murilo@email.com
  *               senha:
  *                 type: string
- *                 format: password
- *                 example: senha123
+ *                 example: "123456"
  *     responses:
  *       200:
- *         description: Login realizado com sucesso
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 message:
- *                   type: string
- *                   example: Login realizado com sucesso
- *                 token:
- *                   type: string
- *                   example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
- *       400:
- *         description: Email ou senha inválidos
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 message:
- *                   type: string
- *                   example: Email ou senha inválidos
+ *         description: Login realizado, token retornado
  *       401:
- *         description: Usuário não autenticado
- *       500:
- *         description: Erro interno do servidor
+ *         description: E-mail ou senha inválidos
  */
 router.post('/login', authController.login);
 
