@@ -1,15 +1,29 @@
-const mongoose = require('mongoose');
+const conexao = require('../config/database');
 const bcrypt = require('bcryptjs');
 
-const usuarioSchema = new mongoose.Schema({
-    nome: { type: String, required: [true, 'Nome é obrigatório'] },
-    email: { type: String, required: [true, 'Email é obrigatório'], unique: true },
-    senha: { type: String, required: [true, 'Senha é obrigatória'] }
-});
+class UsuarioModel {
+    static async buscarPorEmail(email) {
+        const sql = 'SELECT * FROM usuarios WHERE email = ?';
+        const [linhas] = await conexao.execute(sql, [email]);
+        return linhas.length > 0 ? linhas[0] : null;
+    }
 
-usuarioSchema.pre('save', async function () {
-    if (!this.isModified('senha')) return;
-    this.senha = await bcrypt.hash(this.senha, 10);
-});
+    static async buscarPorId(id) {
+        const sql = 'SELECT id, nome, email FROM usuarios WHERE id = ?';
+        const [linhas] = await conexao.execute(sql, [id]);
+        return linhas.length > 0 ? linhas[0] : null;
+    }
 
-module.exports = mongoose.model('Usuario', usuarioSchema);
+    static async criar({ nome, email, senha }) {
+        const senhaCriptografada = await bcrypt.hash(senha, 10);
+        const sql = 'INSERT INTO usuarios (nome, email, senha) VALUES (?, ?, ?)';
+        const [resultado] = await conexao.execute(sql, [nome, email, senhaCriptografada]);
+        return resultado.insertId;
+    }
+
+    static async verificarSenha(senhaTexto, senhaHash) {
+        return bcrypt.compare(senhaTexto, senhaHash);
+    }
+}
+
+module.exports = UsuarioModel;
